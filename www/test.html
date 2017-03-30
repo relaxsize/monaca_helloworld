@@ -17,9 +17,35 @@
 </head>
 <body>
 
-    <h1>Welcome to Monaca!</h1>
+    <h1>Javascript test</h1>
     <a class="button--large" href="phonegap-demo.html">Start Demo</a>
-    <a class="button--large" href="test.html">Test Page</a>
-
+    <div id="outer"></div>
+<script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+<script>
+$(function() {
+  loadfeed();
+});
+function loadfeed(){
+  var path = 'https://headlines.yahoo.co.jp/rss/abema-dom.xml';
+  $.ajax({
+    url: path,
+    async: true,
+    cache: false,
+    dataType:"xml",
+    error: function(){
+        alert('Error loading XML document');
+    },
+    success: function(xml){
+      $(xml).find('item').each(function(i){
+        var title_value = $(this).find('title').text();
+        $("#outer").append(title_value);
+      }
+    }
+});
+}
+</script>
 </body>
 </html>
