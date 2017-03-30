@@ -18,16 +18,13 @@
 <body>
 
     <h1>Javascript test</h1>
-    <a href="#" onclick="loadfeed()">hoge</a>
+    <a href="#" onclick="loadfeed()">更新</a>
     <div id="outer"></div>
 
 <script>
 $(function() {
-  //loadfeed();
+  loadfeed();
 });
-function testFeed(){
-    alert('load');
-}
 function loadfeed(){
   console.log('load');
   var path = 'https://headlines.yahoo.co.jp/rss/abema-dom.xml';
@@ -43,7 +40,7 @@ function loadfeed(){
         console.log('test');
         $(xml).find('item').each(function(i){
             var title_value = $(this).find('title').text();
-            $("#outer").append(title_value);
+            $("#outer").append('<p>' + title_value + '</p>');
         });
     }
     });
