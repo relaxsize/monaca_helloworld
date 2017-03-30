@@ -18,17 +18,18 @@
 <body>
 
     <h1>Javascript test</h1>
-    <a class="button--large" href="phonegap-demo.html">Start Demo</a>
+    <a href="#" onclick="loadfeed()">hoge</a>
     <div id="outer"></div>
-<script
-  src="https://code.jquery.com/jquery-2.2.4.min.js"
-  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-  crossorigin="anonymous"></script>
+
 <script>
 $(function() {
-  loadfeed();
+  //loadfeed();
 });
+function testFeed(){
+    alert('load');
+}
 function loadfeed(){
+  console.log('load');
   var path = 'https://headlines.yahoo.co.jp/rss/abema-dom.xml';
   $.ajax({
     url: path,
@@ -36,15 +37,16 @@ function loadfeed(){
     cache: false,
     dataType:"xml",
     error: function(){
-        alert('Error loading XML document');
+        console.log('Error loading XML document');
     },
     success: function(xml){
-      $(xml).find('item').each(function(i){
-        var title_value = $(this).find('title').text();
-        $("#outer").append(title_value);
-      }
+        console.log('test');
+        $(xml).find('item').each(function(i){
+            var title_value = $(this).find('title').text();
+            $("#outer").append(title_value);
+        });
     }
-});
+    });
 }
 </script>
 </body>
